@@ -92,24 +92,64 @@ class AssignmentProvidedTests {
     int k = 1 / z;
   }
 
-  // public static void w() {
-  //   int j = 5;
+  public static void m() {
+    int v = -1 % 2;
+    int w = 1 % -5;
 
-  //   while (i > 0) {
-  //     i--;
-  //   }
+    // :: error: divide.by.zero
+    int x = 1 % 0;
+    // :: error: divide.by.zero
+    int y = 0 % 0;
 
-  //   // :: error: divide.by.zero
-  //   int w = 2 / j;
+    int z = 0 % 5;
+  }
 
-  //   int i = 5;
-  //   int[] a = {1, 1, 1, 5, 2, 1};
+  public static void a(int y) {
+    if (y > -5) {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    }
 
-  //   while (i > 0) {
-  //     i = i - a[i];
-  //   }
+    if (y >= (5 * 0)) {
+      // :: error: divide.by.zero
+      int x = 5 / y;
+    }
+  }
 
-  //   // :: error: divide.by.zero
-  //   int z = a[0] / i;
-  // }
+  public static void c(int y) {
+    if (y != -1) {
+      // :: error: divide.by.zero
+      int x = 1 / y;
+    } else {
+      int x = 1 / y;
+    }
+  }
+
+  public static void b(int y) {
+    int x = 5;
+    x = x - 6;
+
+    // Actually know it's non zero
+    // :: error: divide.by.zero
+    y = 1 / x;
+  }
+
+  public static void d(int y) {
+    int x = 6 - 5; // top
+    if (y == x) {
+      // :: error: divide.by.zero
+      int z = x / y; 
+    }
+
+    int l = 6 - 5; // top
+    int z = 1;
+
+    if (z == l) {
+      // Think it should give this error based on
+      // the refinement, but doens't 
+
+      // // :: error: divide.by.zero
+      int r = l / z; 
+    }
+  }
 }

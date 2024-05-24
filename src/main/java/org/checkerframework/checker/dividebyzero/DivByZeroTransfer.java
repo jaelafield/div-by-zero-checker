@@ -79,10 +79,10 @@ public class DivByZeroTransfer extends CFTransfer {
 
     if (operator.equals(Comparison.EQ)) {
       return rhs;
-    } else if (operator.equals(Comparison.NE) || operator.equals(Comparison.LT) || operator.equals(Comparison.GT)
+    } else if ((operator.equals(Comparison.NE) || operator.equals(Comparison.LT) || operator.equals(Comparison.GT))
       && equal(rhs, reflect(Zero.class))) {
 
-      return glb(lhs, reflect(NonZero.class));
+      return reflect(NonZero.class);
     }
     return lhs;
   }
