@@ -76,9 +76,9 @@ class AssignmentProvidedTests {
     int one_the_hard_way = 0 * 1 + 1;
     int y = 1 / one_the_hard_way;
 
-    // int zero_the_hard_way_again = 0 * (1 + 1);
-    // // :: error: divide.by.zero
-    // int z = 1 / zero_the_hard_way_again;
+    int zero_the_hard_way_again = 0 * (1 + 1);
+    // :: error: divide.by.zero
+    int z = 1 / zero_the_hard_way_again;
   }
 
   public static void l() {

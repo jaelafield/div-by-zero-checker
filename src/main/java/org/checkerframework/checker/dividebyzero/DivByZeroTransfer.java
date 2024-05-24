@@ -76,7 +76,14 @@ public class DivByZeroTransfer extends CFTransfer {
    */
   private AnnotationMirror refineLhsOfComparison(
       Comparison operator, AnnotationMirror lhs, AnnotationMirror rhs) {
-    // TODO
+
+    if (operator.equals(Comparison.EQ)) {
+      return rhs;
+    } else if (operator.equals(Comparison.NE) || operator.equals(Comparison.LT) || operator.equals(Comparison.GT)
+      && equal(rhs, reflect(Zero.class))) {
+
+      return glb(lhs, reflect(NonZero.class));
+    }
     return lhs;
   }
 
@@ -97,8 +104,48 @@ public class DivByZeroTransfer extends CFTransfer {
    */
   private AnnotationMirror arithmeticTransfer(
       BinaryOperator operator, AnnotationMirror lhs, AnnotationMirror rhs) {
-    // TODO
+      
+    // Anything with Bottom -> Bottom
+    if (equal(lhs, reflect(Bottom.class)) || equal(rhs, reflect(Bottom.class))) return bottom();
+
+    if (operator.equals(BinaryOperator.PLUS) || operator.equals(BinaryOperator.MINUS)) {
+      return addAndSubTransfer(lhs, rhs);
+    } else if (operator.equals(BinaryOperator.TIMES)) {
+      return timesTransfer(lhs, rhs);
+    } else {
+      return divAndModTransfer(lhs, rhs);
+    }
+  }
+
+  /* Transfer functions for addition and subtraction */
+  private AnnotationMirror addAndSubTransfer (AnnotationMirror lhs, AnnotationMirror rhs) {
+    if (equal(lhs, reflect(Zero.class))) {
+      return rhs;
+    } else if (equal(rhs, reflect(Zero.class))) {
+      return lhs;
+    } 
     return top();
+  }
+
+  /* Transfer functions for multiplication */
+  private AnnotationMirror timesTransfer (AnnotationMirror lhs, AnnotationMirror rhs) {
+    // * 0 --> 0
+    if (equal(lhs, reflect(Zero.class)) || equal(rhs, reflect(Zero.class))) {
+      return reflect(Zero.class);
+    } else if (equal(lhs, reflect(NonZero.class)) && equal(rhs, reflect(NonZero.class))) {
+      return reflect(NonZero.class);
+    }
+    // either top -> top
+    return top();
+  }
+
+  private AnnotationMirror divAndModTransfer (AnnotationMirror lhs, AnnotationMirror rhs) {
+    // error || potential error cases
+    if (equal(rhs, reflect(Zero.class)) || equal(rhs, top())) {
+      return bottom();
+    } else { // rhs is NonZero, lhs / NonZero --> lhs
+      return lhs;
+    }
   }
 
   // ========================================================================
