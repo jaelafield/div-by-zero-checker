@@ -75,6 +75,10 @@ class AssignmentProvidedTests {
 
     int one_the_hard_way = 0 * 1 + 1;
     int y = 1 / one_the_hard_way;
+
+    // int zero_the_hard_way_again = 0 * (1 + 1);
+    // // :: error: divide.by.zero
+    // int z = 1 / zero_the_hard_way_again;
   }
 
   public static void l() {
@@ -87,4 +91,25 @@ class AssignmentProvidedTests {
     // :: error: divide.by.zero
     int k = 1 / z;
   }
+
+  // public static void w() {
+  //   int j = 5;
+
+  //   while (i > 0) {
+  //     i--;
+  //   }
+
+  //   // :: error: divide.by.zero
+  //   int w = 2 / j;
+
+  //   int i = 5;
+  //   int[] a = {1, 1, 1, 5, 2, 1};
+
+  //   while (i > 0) {
+  //     i = i - a[i];
+  //   }
+
+  //   // :: error: divide.by.zero
+  //   int z = a[0] / i;
+  // }
 }

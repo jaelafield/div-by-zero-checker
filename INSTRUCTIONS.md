@@ -32,25 +32,25 @@ printed to the console, make sure that you can see a log containing:
 java.lang.AssertionError: The test run was expected to issue errors/warnings, but it did not.
     0 out of 12 expected diagnostics were found.
     12 expected diagnostics were not found:
-    Foo.java:16: error: divide.by.zero
-    Foo.java:19: error: divide.by.zero
-    Foo.java:26: error: divide.by.zero
-    Foo.java:35: error: divide.by.zero
-    Foo.java:42: error: divide.by.zero
-    Foo.java:47: error: divide.by.zero
-    Foo.java:58: error: divide.by.zero
-    Foo.java:67: error: divide.by.zero
-    Foo.java:74: error: divide.by.zero
-    Foo.java:82: error: divide.by.zero
-    Foo.java:85: error: divide.by.zero
-    Foo.java:88: error: divide.by.zero
+    AssignmentProvidedTests.java:16: error: divide.by.zero
+    AssignmentProvidedTests.java:19: error: divide.by.zero
+    AssignmentProvidedTests.java:26: error: divide.by.zero
+    AssignmentProvidedTests.java:35: error: divide.by.zero
+    AssignmentProvidedTests.java:42: error: divide.by.zero
+    AssignmentProvidedTests.java:47: error: divide.by.zero
+    AssignmentProvidedTests.java:58: error: divide.by.zero
+    AssignmentProvidedTests.java:67: error: divide.by.zero
+    AssignmentProvidedTests.java:74: error: divide.by.zero
+    AssignmentProvidedTests.java:82: error: divide.by.zero
+    AssignmentProvidedTests.java:85: error: divide.by.zero
+    AssignmentProvidedTests.java:88: error: divide.by.zero
 ```
 
-  These errors indicate lines in the file `tests/dividebyzero/Foo.java` that ought to
+  These errors indicate lines in the file `tests/dividebyzero/AssignmentProvidedTests.java` that ought to
   warn about a divide-by-zero error, but do not. That file contains a
   selection of Java code that will issue divide by zero errors if executed. The test code
-  in `Foo.java` is non-exhaustive: you are expected to write your own test code to
-  augment it. You can do so by either adding code to `Foo.java` or by adding new `.java`
+  in `AssignmentProvidedTests.java` is non-exhaustive: you are expected to write your own test code to
+  augment it. You can do so by either adding code to `AssignmentProvidedTests.java` or by adding new `.java`
   files to the `tests/dividebyzero/` directory. We will not grade your test suite directly,
   but writing a higher-quality test suite will help you avoid making mistakes in defining
   your analysis.
@@ -77,7 +77,7 @@ reporting errors at specific places in the program once the analysis terminates.
 
 5. At this point, your analysis is functional (although not very useful). Verify that 
 errors are reported using `./gradlew build`/`gradlew.bat build`. At this point, instead
-of seeing that *not enough* errors are issued on `Foo.java`, you should see that *too many*
+of seeing that *not enough* errors are issued on `AssignmentProvidedTests.java`, you should see that *too many*
 errors are issued.
 
 6. Implement the abstraction function. The file `DivByZeroAnnotatedTypeFactory.java` 
