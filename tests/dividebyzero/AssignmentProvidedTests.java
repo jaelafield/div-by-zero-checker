@@ -146,10 +146,29 @@ class AssignmentProvidedTests {
 
     if (z == l) {
       // Think it should give this error based on
-      // the refinement, but doens't 
+      // the refinement, but doensn't 
 
       // // :: error: divide.by.zero
       int r = l / z; 
     }
+  }
+
+  public static void e(int x, int y) {
+    if (y != 0) {
+      System.out.println(x / y);
+    } else {
+      // :: error: divide.by.zero
+      System.out.println(x / y);
+    }
+
+    // :: error: divide.by.zero
+    System.out.println(x / y);
+    // :: error: divide.by.zero
+    System.out.println(y / x);
+  }
+
+  public static void g() {
+    int x = 1 + 0;
+    int y = 1 / x;
   }
 }
