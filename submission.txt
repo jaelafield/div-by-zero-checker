@@ -1,0 +1,5 @@
+Hitesh Boinpally (netid: hiteshb)
+Jaela Field (netid: jaelaf)
+
+url to div-by-zero-checker fork:
+https://github.com/jaelafield/div-by-zero-checker/tree/master
